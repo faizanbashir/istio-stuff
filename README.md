@@ -1,1 +1,1 @@
-# MMAI_ISTIO
+# istio-stuff TBD
