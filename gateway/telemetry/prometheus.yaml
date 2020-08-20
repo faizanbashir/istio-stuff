@@ -8,6 +8,14 @@ spec:
     istio: ingressgateway
   servers:
   - port:
+      number: 80
+      name: http-prom
+      protocol: HTTP
+    tls:
+      httpsRedirect: true
+    hosts:
+    - "prometheus.${INGRESS_DOMAIN}"
+  - port:
       number: 443
       name: https-prom
       protocol: HTTPS

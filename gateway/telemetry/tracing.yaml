@@ -8,6 +8,14 @@ spec:
     istio: ingressgateway
   servers:
   - port:
+      number: 80
+      name: http-tracing
+      protocol: HTTP
+    tls:
+      httpsRedirect: true
+    hosts:
+    - "tracing.${INGRESS_DOMAIN}"
+  - port:
       number: 443
       name: https-tracing
       protocol: HTTPS
