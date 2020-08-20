@@ -20,3 +20,8 @@ kubectl create -n istio-system secret tls telemetry-gw-cert --key=${CERT_DIR}/tl
 #Moving an existing TLS cert from another namespace to istio-system
 kubectl get secret mydomain-tls -n dev -o yaml | sed "s/dev/istio-system/g" | sed "s/mydomain-tls/telemetry-gw-cert/g" | kubectl apply -n istio-system -f -
 
+#Update ingress-gateway's externalTrafficPolicy to Local
+kubectl patch svc istio-ingressgateway -n istio-system -p '{"spec":{"externalTrafficPolicy":"Local"}}'
+
+#Update ingress-gateway's externalTrafficPolicy to Cluster
+kubectl patch svc istio-ingressgateway -n istio-system -p '{"spec":{"externalTrafficPolicy":"Cluster"}}'
